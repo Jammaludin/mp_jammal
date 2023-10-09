@@ -1,43 +1,36 @@
 import { useState } from "react";
-import { StyleSheet, Text, View, Button, TextInput, ScrollView } from "react-native";
+import {
+    StyleSheet,
+    View,
+    FlatList
+} from "react-native";
+import GoalItem from "./components/GoalItem";
+import GoalInput from "./components/GoalInput";
 
 export default function Aplikasi() {
-    const [enteredGoalText, setenteredGoalText] = useState('');
+    
     const [tujuanUtama, settujuanUtama] = useState([]);
-    function goalsInputHandler(enteredText) {
-        setenteredGoalText(enteredText);
-     };
 
-    function sendButtonHandler() {
+    function sendButtonHandler(enteredGoalText) {
         settujuanUtama(currenttujuanUtama => [
             ...tujuanUtama,
-            enteredGoalText
+            {text: enteredGoalText, id: Math.random().toString()},
         ]);
-     };
+     }
 
     return (
         <View style={style.container}>
-            <View style={style.inputContainer}>
-                <TextInput
-                    style={style.textInput}
-                    placeholder="Ketik disini"
-                    onChangeText={goalsInputHandler}
-                />
-                <Button
-                    title="Send"
-                    onPress={sendButtonHandler}
-                />
-            </View>
+            <GoalInput onAddGoal={ sendButtonHandler } />
             <View style={style.goalsContainer}>
-                <ScrollView>
-                {tujuanUtama.map((goals) => (
-                    <View
-                        style={style.goalsItem}
-                        key={goals}>
-                    <Text style={style.goalsText}>{goals}</Text>
-                    </View>
-                ))}
-                </ScrollView>
+                <FlatList
+                    data={tujuanUtama}
+                    renderItem={(itemData) => {
+                        return <GoalItem text={itemData.item.text} />;
+                    }}
+                    keyExtractor={(item, index) => {
+                        return item.id;
+                    } }
+                    alwaysBounceVertical={false} />
             </View>
         </View>
     );
@@ -48,34 +41,9 @@ const style = StyleSheet.create({
         flex: 1,
         paddingTop: 50,
         paddingHorizontal: 16,
-        backgroundColor: 'purple'
-    },
-    inputContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 25,
-        borderBottomColor: 'black',
-        
-    },
-    textInput: {
-        borderWidth: 1,
-        borderColor: 'white',
-        width: '80%',
-        padding: 5,
-        backgroundColor: 'white'
+        backgroundColor: 'pink'
     },
     goalsContainer: {
         flex: 4
     },
-    goalsItem: {
-        margin: 5,
-        borderRadius: 10,
-        backgroundColor: 'red',
-        padding: 10,
-    },
-    goalsText: {
-        color: 'white',
-    }
 })
