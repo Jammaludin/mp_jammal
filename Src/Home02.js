@@ -5,9 +5,9 @@ import Btn from "./Btn";
 export default function Home(Props) {
     return (
         <Background>
-            <View style={{ marginHorizontal: 80, marginVertical: 200, alignItems: 'center'}}>
-                <Text style={{ color: 'white', fontSize: 35, }}>Let's Start</Text>
-                <Text style={{ color: 'white', fontSize: 20, marginBottom: 50 }}>Use Aplication</Text>
+            <View style={{ marginHorizontal: 80, marginVertical: 200, alignItems: 'center',}}>
+                <Text style={{ color: 'white', fontSize: 35, }}>Welcome</Text>
+                <Text style={{ color: 'white', fontSize: 20, marginBottom: 50, }}></Text>
                 <Btn
                     bgColor="rgba(255,0,0,0.6)"
                     textColor="white"
