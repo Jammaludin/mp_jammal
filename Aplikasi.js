@@ -4,8 +4,8 @@ import {
     View,
     FlatList
 } from "react-native";
-import GoalItem from "./components/GoalItem";
-import GoalInput from "./components/GoalInput";
+import GoalItem from "./componentss/GoalItemm";
+import GoalInput from "./componentss/GoalInputt";
 
 export default function Aplikasi() {
     
